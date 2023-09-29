@@ -53,8 +53,8 @@ func NewOptionsRequest(ctx context.Context, url string, body io.Reader) (*http.R
 }
 
 // NewTraceRequest returns a new http.Request with TRACE method.
-func NewTraceRequest(ctx context.Context, url string, body io.Reader) (*http.Request, error) {
-	return NewRequest(ctx, http.MethodTrace, url, body)
+func NewTraceRequest(ctx context.Context, url string) (*http.Request, error) {
+	return NewRequest(ctx, http.MethodTrace, url, http.NoBody)
 }
 
 // MustGetRequest returns a new http.Request with GET method.
@@ -130,8 +130,8 @@ func MustOptionsRequest(ctx context.Context, url string, body io.Reader) *http.R
 }
 
 // MustTraceRequest returns a new http.Request with TRACE method.
-func MustTraceRequest(ctx context.Context, url string, body io.Reader) *http.Request {
-	req, err := NewRequest(ctx, http.MethodTrace, url, body)
+func MustTraceRequest(ctx context.Context, url string) *http.Request {
+	req, err := NewRequest(ctx, http.MethodTrace, url, http.NoBody)
 	if err != nil {
 		panic(fmt.Sprintf("httpx: must TRACE Trace request%v", err))
 	}
